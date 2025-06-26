@@ -51,25 +51,32 @@ class Tree {
     return root;
   }
 
-  deleteItem(value, root = this.root) { 
+  deleteItem(value, root = this.root, prevRoot) { 
     if (root === null) {
 		console.log('value not found');
 		return null;
-	};
+		};
     if (root.data === value && !root.left && !root.right) {
-		console.log('yee')
-		root.data = null;
-      
+		return null;
     }
+		if (root.data === value && (root.left && !root.right || root.right && !root.left)) {
+			if (root.left) return root.left;
+			if (root.right) return root.right;
+		}
+		if (root.data === value && root.left & root.right) { //find right node, then find closest left node with no child.
+			root.right
+		}
     if (value < root.data) {
-	  console.log('left');
+	  	let prevRoot = root;
+	  	console.log(prevRoot)
       root.left = this.deleteItem(value, root.left)
     }
     if (value > root.data) {
-	  console.log('right')
-      root.right = this.deleteItem(value, root.right)
+	  	let prevRoot = root;
+			console.log(prevRoot);
+      root.right = this.deleteItem(value, root.right, prevRoot)
     }
-	return root;
+		return root;
   }
 
 }
@@ -96,6 +103,6 @@ console.log(test.insert(22))
 test.insert(45)
 test.insert(44)
 test.insert(43)
-test.deleteItem(22)
+test.deleteItem(5)
 console.log(test.root)
 prettyPrint(test.root)
