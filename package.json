@@ -7,7 +7,7 @@
     "dev": "webpack serve --open --config webpack.dev.js",
     "deploy": "git subtree push --prefix dist origin gh-pages",
     "build": "webpack --config webpack.prod.js",
-    "pretty": "npx prettier . --write",
+    "pretty": "npx prettier ./src --write",
     "lint": "npx eslint .js"
   },
   "keywords": [],
