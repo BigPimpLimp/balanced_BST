@@ -11,6 +11,7 @@ test.insert(22);
 test.insert(45);
 test.insert(44);
 test.insert(43);
+test.insert(33);
 console.log(test)
 // test.deleteItem(23);
 prettyPrint(test.root);
@@ -20,9 +21,10 @@ console.log(test.preOrder(test.root, "PreOrder: ", print));
 console.log(test.inOrder(test.root, "In Order: ", print));
 console.log(test.postOrder(test.root, "Post Order: ", print));
 console.log(test.treeHeight());
-console.log(test.nodeHeight(4));
-console.log(test.depth(67));
+console.log(test.nodeHeight(99));
+console.log(test.depth(87));
 console.log(test.isBalanced());
 console.log(test.rebalance());
 prettyPrint(test.root);
+console.log(test.root)
 console.log(test.isBalanced());

@@ -22,11 +22,11 @@ export class Tree {
     return root;
   }
 
-  insert(value, root = this.root) {
-    if (root === null) {
-      return new Node(value);
+  insert(value, root = this.root) { //is not rebuilding tree correclty. 
+    if (root === null) {     
+      console.log(value)       //some left and right values are undefined an not null
+      return new Node(value);  //WHEN VALUE IS ALREADY IN TREE IT CAUSES ISSUES 
     }
-    if (root.data === value) return;
     if (value < root.data) {
       root.left = this.insert(value, root.left);
     }
@@ -102,7 +102,7 @@ export class Tree {
 
   preOrder(root = this.root, string, callback = print) {
     if (root === null) return string;
-
+    console.log(root.data)
     string += `${callback(root.data)}, `;
 
     string = this.preOrder(root.left, string);
@@ -149,12 +149,15 @@ export class Tree {
       if (value === currentNode.data) {
         return this.treeHeight(currentNode);
       }
-      if (value < currentNode.data) {
+      if (value < currentNode.data && currentNode) {
         currentNode = currentNode.left;
       }
-      if (value > currentNode.data) {
+      if (value > currentNode.data && currentNode) {
         currentNode = currentNode.right;
+      } else {
+        return null;
       }
+      
     }
     return null;
   }
@@ -172,7 +175,8 @@ export class Tree {
     }
   }
 
-  isBalanced(root = this.root) {
+  isBalanced(root = this.root) { //may not be getting updated root after insert statements
+    console.log(root)
     if (root === null) return true;
     let left = root.left ? this.nodeHeight(root.left.data) : -1;
     let right = root.right ? this.nodeHeight(root.right.data) : -1;
