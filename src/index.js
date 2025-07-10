@@ -12,7 +12,7 @@ test.insert(45);
 test.insert(44);
 test.insert(43);
 test.insert(33);
-console.log(test)
+console.log(test);
 // test.deleteItem(23);
 prettyPrint(test.root);
 console.log(test.findValue(111));
@@ -26,5 +26,5 @@ console.log(test.depth(87));
 console.log(test.isBalanced());
 console.log(test.rebalance());
 prettyPrint(test.root);
-console.log(test.root)
-console.log(test.isBalanced());
+console.log(test.root);
+console.log(test.isBalanced(test.root));

@@ -7,7 +7,8 @@ export class Tree {
     this.root = null;
   }
 
-  buildTree(arr, start, end) {    //this function is causing issues with pretty print
+  buildTree(arr, start, end) {
+    //this function is causing issues with pretty print
     if (start > end) return null; //left and right are sometimes undefined instead of null
 
     const mid = Math.floor((start + end) / 2);
@@ -22,10 +23,11 @@ export class Tree {
     return root;
   }
 
-  insert(value, root = this.root) { //is not rebuilding tree correclty. 
-    if (root === null) {     
-      console.log(value)       //some left and right values are undefined an not null
-      return new Node(value);  //WHEN VALUE IS ALREADY IN TREE IT CAUSES ISSUES 
+  insert(value, root = this.root) {
+    //is not rebuilding tree correclty.
+    if (root === null) {
+      console.log(value); //some left and right values are undefined an not null
+      return new Node(value); //WHEN VALUE IS ALREADY IN TREE IT CAUSES ISSUES
     }
     if (value < root.data) {
       root.left = this.insert(value, root.left);
@@ -102,7 +104,7 @@ export class Tree {
 
   preOrder(root = this.root, string, callback = print) {
     if (root === null) return string;
-    console.log(root.data)
+    console.log(root.data);
     string += `${callback(root.data)}, `;
 
     string = this.preOrder(root.left, string);
@@ -143,21 +145,17 @@ export class Tree {
   }
 
   nodeHeight(value) {
+    console.log(value);
     let currentNode = this.root;
 
     while (currentNode) {
       if (value === currentNode.data) {
         return this.treeHeight(currentNode);
-      }
-      if (value < currentNode.data && currentNode) {
+      } else if (value < currentNode.data && currentNode) {
         currentNode = currentNode.left;
-      }
-      if (value > currentNode.data && currentNode) {
-        currentNode = currentNode.right;
       } else {
-        return null;
+        currentNode = currentNode.right;
       }
-      
     }
     return null;
   }
@@ -175,13 +173,16 @@ export class Tree {
     }
   }
 
-  isBalanced(root = this.root) { //may not be getting updated root after insert statements
-    console.log(root)
+  isBalanced(root = this.root) {
+    //may not be getting updated root after insert statements
+
     if (root === null) return true;
     let left = root.left ? this.nodeHeight(root.left.data) : -1;
     let right = root.right ? this.nodeHeight(root.right.data) : -1;
 
     if (Math.abs(left - right) > 1) {
+      console.log(left);
+      console.log(right);
       return false;
     }
     return this.isBalanced(root.left) && this.isBalanced(root.right);
